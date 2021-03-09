@@ -27,7 +27,6 @@ function Checkbox(props) {
 
     return (
         <label className={ className }>
-            <span className="x-checkbox__mask"></span>
             <span className="x-checkbox__mark">
                 <Use icon="check" width="11" height="9" />
             </span>

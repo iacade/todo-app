@@ -1,9 +1,11 @@
 .app {
     --block-color: hsl(235, 24%, 19%);
-    --block-shadow: 0 20px 30px rgb(15, 15, 35);
+    --block-shadow: 0 20px 35px rgba(15, 15, 35, .5);
     --accent-color: hsl(220, 98%, 61%);
     --placeholder-color: hsl(234, 11%, 52%);
     --dark-color: hsl(233, 14%, 35%);
     --border-color: hsl(234, 11%, 52%);
+    --item-border-color: hsl(233, 14%, 35%);
     --text-color: hsl(234, 39%, 85%);
+    --icon-hover-color: #fff;
 }

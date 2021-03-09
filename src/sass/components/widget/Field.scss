@@ -1,8 +1,10 @@
 .field {
     border-radius: 4px;
     margin: 45px 0 25px 0;
+    box-shadow: var(--block-shadow);
 
     &.todo-item {
         cursor: default;
     }
+
 }

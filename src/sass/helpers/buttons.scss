@@ -45,14 +45,14 @@
     border: 1px solid transparent;
 
     &:hover, &:focus {
-        color: #fff;
+        color: var(--icon-hover-color);
     }
 
     &:focus {
-        border-color: #fff;
+        border-color: var(--icon-hover-color);
     }
 
-    &--active {
+    &--active, &--active:hover {
         color: var(--accent-color);
     }
 }
@@ -62,10 +62,10 @@
     color: #494C6B;
 
     &:hover, &:focus {
-        color: #fff;
+        color: var(--icon-hover-color);
     }
 
     &:focus {
-        border-color: #fff;
+        border-color: var(--icon-hover-color);
     }
 }

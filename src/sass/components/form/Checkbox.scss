@@ -10,7 +10,7 @@
     cursor: pointer;
 
     &:hover, &--focus {
-        border-color: transparent;
+        border: none;
         background: linear-gradient(to right bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
     }
 
@@ -36,6 +36,7 @@
     }
 
     &--checked {
+        border: none;
         background: linear-gradient(to right bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
     }
 

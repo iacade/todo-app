@@ -45,7 +45,7 @@
         transition: 100ms;
     }
 
-    &:hover .btn-close {
+    &:hover .btn-close, &--hover .btn-close {
         transform: none;
         opacity: 1;
         visibility: visible;

@@ -4,6 +4,26 @@
     width: 100%;
     position: relative;
 
+    &__border {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: var(--text-color);
+        transform-origin: left;
+        transform: scaleX(0);
+        opacity: 0;
+        pointer-events: none;
+        transition: 100ms;
+    }
+    
+    &--focus &__border {
+        transition: 200ms;
+        transform: none;
+        opacity: 1;
+    }
+
     input {
         width: 100%;
         caret-color: var(--accent-color);

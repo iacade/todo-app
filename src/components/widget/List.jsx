@@ -34,11 +34,25 @@ function List(props) {
     const filteredItems = filters[filter].filter(state.items);
     let leftItemsText = "No items";
 
-    if (filteredItems.length === 1) {
-        leftItemsText = "1 item left";
+    if (filter === filters.completed.name) {
+        const completedCount = filters.completed.filter(state.items).length;
+
+        if (completedCount === 1) {
+            leftItemsText = "1 item done";
+        }
+        else if (completedCount > 1) {
+            leftItemsText = `${ completedCount } items done`;
+        }
     }
-    else if (filteredItems.length > 1) {
-        leftItemsText = `${ filteredItems.length } items left`;
+    else {
+        const uncompletedCount = filters.active.filter(state.items).length;
+        
+        if (uncompletedCount === 1) {
+            leftItemsText = "1 item left";
+        }
+        else if (uncompletedCount > 1) {
+            leftItemsText = `${ uncompletedCount } items left`;
+        }
     }
 
     return (

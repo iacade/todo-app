@@ -1,0 +1,44 @@
+.flex {
+    display: flex;
+}
+
+.align-center {
+    justify-content: center;
+}
+
+.align-between {
+    justify-content: space-between;
+}
+
+.align-around {
+    justify-content: space-around;
+}
+
+.align-start {
+    justify-content: flex-start;
+}
+
+.align-end {
+    justify-content: flex-end;
+}
+
+.valign-center {
+    align-items: center;
+}
+
+.valign-start {
+    align-items: flex-start;
+}
+
+.valign-end {
+    align-items: flex-end;
+}
+
+.visually-hidden {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+}

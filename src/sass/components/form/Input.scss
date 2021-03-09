@@ -1,0 +1,25 @@
+.x-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    input {
+        width: 100%;
+        caret-color: var(--accent-color);
+    }
+
+    &__placeholder {
+        color: var(--placeholder-color);
+        position: absolute;
+        pointer-events: none;
+        user-select: none;
+        transition: 100ms;
+    }
+
+    &--not-empty &__placeholder {
+        transform: translateX(24px);
+        opacity: 0;
+        visibility: hidden;
+    }
+}

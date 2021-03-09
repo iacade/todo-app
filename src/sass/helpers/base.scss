@@ -1,0 +1,28 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+button, input, textarea, select {
+    font: inherit;
+    color: inherit;
+    border: none;
+    outline: none;
+    background: inherit;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: 15px;
+    color: hsl(0, 100%, 100%);
+}
+
+.mr-4 {
+    margin-right: 20px;
+}

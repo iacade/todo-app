@@ -1,0 +1,53 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+    background: var(--block-color);
+    cursor: pointer;
+
+    &__value {
+        width: 100%;
+        padding: 20px 20px 20px 0;
+
+        p {
+            position: relative;
+        }
+    }
+
+    &__checkbox {
+        padding: 20px;
+    }
+
+    &__line-through {
+        position: absolute;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: var(--dark-color);
+        transform-origin: left;
+        transform: scaleX(0);
+        opacity: 0;
+        transition: 200ms;
+    }
+
+    &--done &__value {
+        color: var(--dark-color);
+    }
+
+    &--done &__line-through {
+        transform: none;
+        opacity: 1;
+    }
+
+    .btn-close {
+        transform: scale(.8);
+        opacity: 0;
+        visibility: hidden;
+        transition: 100ms;
+    }
+
+    &:hover .btn-close {
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+    }
+}

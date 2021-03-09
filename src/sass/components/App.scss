@@ -1,0 +1,29 @@
+@import "./widget/Widget";
+@import "./widget/Header";
+@import "./widget/Field";
+@import "./widget/List";
+@import "./widget/Item";
+@import "./form/Input";
+@import "./form/Checkbox";
+
+.app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 18px;
+    color: var(--text-color);
+
+    &--dark {
+        background: hsl(235, 21%, 11%) top center
+            / 100% auto no-repeat url("../../images/bg-desktop-dark.jpg");
+    }
+
+    &--light {
+        background: hsl(0, 0%, 98%) top center
+            / 100% auto no-repeat url("../../images/bg-desktop-light.jpg");
+    }
+}

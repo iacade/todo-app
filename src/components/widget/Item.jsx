@@ -10,6 +10,10 @@ function Item(props) {
         type: "toggle",
         identifier: props.identifier
     });
+    const handleRemove = () => dispatch({
+        type: "pop",
+        identifier: props.identifier
+    });
 
     const className = classes({
         "todo-item": true,
@@ -26,7 +30,7 @@ function Item(props) {
                     <span className="todo-item__line-through"></span>
                     <span>{ props.text }</span>
                 </p>
-                <button className="btn btn-ico btn-close">
+                <button className="btn btn-ico btn-close" onClick={ handleRemove }>
                     <Use icon="close" width="18" height="18" />
                 </button>
             </div>

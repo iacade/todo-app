@@ -19,8 +19,12 @@ function reducer(state, action) {
             state.items.unshift(new TodoItem(action.text, action.done, idGenerator.next().value));
             break;
         case "pop":
-            state.items.splice(state.items.findIndex(
-                item => item.identifier === action.identifier), 1);
+            const index = state.items.findIndex(item => item.identifier === action.identifier);
+            
+            if (index !== -1) {
+                state.items.splice(index, 1);
+            }
+            
             break;
         case "toggle":
             state.items.find(item => item.identifier === action.identifier)?.toggle();

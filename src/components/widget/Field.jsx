@@ -9,7 +9,7 @@ function Field() {
     const { dispatch } = useContext(AppContext);
     
     const handleKeyDown = ({ code }) => {
-        if (code === "Enter") {
+        if (code === "Enter" && text) {
             dispatch({
                 type: "push",
                 text: text,

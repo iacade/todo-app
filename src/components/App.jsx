@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Widget from "./widget/Widget";
 import AppContext from "../context/AppContext";
 import Source from "./svg/Source";
@@ -14,6 +14,17 @@ function App() {
         theme: theme,
         toggle: () => setTheme(theme === "dark" ? "light" : "dark")
     };
+    const handleKeyDown = ({ code, ctrlKey }) => {
+        if (code === "KeyZ" && ctrlKey) {
+            dispatch({ type: "undo" });
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    });
 
     const className = classes({
         "app": true,

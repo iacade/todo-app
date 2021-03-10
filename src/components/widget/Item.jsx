@@ -4,7 +4,7 @@ import Use from "../svg/Use";
 import AppContext from "../../context/AppContext";
 import { classes } from "../../helpers/classes";
 
-const DRAG_START_DELAY = 100;
+const DRAG_START_DELAY = 200;
 
 function Item(props) {
     const [ dragDelayId, setDragDelayId ] = useState(0);

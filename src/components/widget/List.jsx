@@ -61,13 +61,14 @@ function List(props) {
     
     useEffect(() => {
         const insertStubBefore = (key) => {
-            const stubIndex = state.items.findIndex(item => item.identifier === dragItem);
-            const newIndex = state.items.findIndex(item => item.identifier === key);
+            const items = state.items.slice();
+            const stubIndex = items.findIndex(item => item.identifier === dragItem);
+            const newIndex = items.findIndex(item => item.identifier === key);
 
-            swap(state.items, stubIndex, newIndex);
+            swap(items, stubIndex, newIndex);
             dispatch({
                 type: "sort",
-                items: state.items
+                items: items
             })
         };
         const handleStopDrag = () => setDragItem(null);

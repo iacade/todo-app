@@ -1,20 +1,32 @@
 import { id } from "../helpers/generate";
 import TodoItem from "../models/TodoItem";
 
-const idGenerator = id();
-const initial = {
-    items: [
-        createTodoItem("Complete online JavaScript course", true),
-        createTodoItem("Jog around the park 3x", false),
-        createTodoItem("10 minutes meditaion", false),
-        createTodoItem("Read for 1 hour", false),
-        createTodoItem("Pick up groceries", false),
-        createTodoItem("Complete Todo App on Frontend Mentor", false),
-    ]
-};
+const [ initial, lastId ] = fetchState();
+const idGenerator = id(lastId + 1);
 
 function createTodoItem(text, done) {
     return new TodoItem(text, done, idGenerator.next().value + "");
+}
+
+function fetchState() {
+    let items = [];
+    let lastId = 1;
+
+    try {
+        items = JSON.parse(window.localStorage.getItem("items")) || [];
+        lastId = Math.max(...items.map(({ identifier }) => +identifier), 0);
+    }
+    catch (err) {
+        window.localStorage.removeItem("items");
+    }
+
+    return [ {
+        items: items.map(({ text, done, identifier }) => new TodoItem(text, done || false, identifier))
+    }, lastId ];
+}
+
+function saveState(state) {
+    window.localStorage.setItem("items", JSON.stringify(state.items));
 }
 
 function reducer(state, action) {
@@ -42,9 +54,12 @@ function reducer(state, action) {
             return state;
     }
 
-    return {
+    const newState = {
         items: state.items
     };
+    saveState(newState);
+
+    return newState;
 }
 
 export {

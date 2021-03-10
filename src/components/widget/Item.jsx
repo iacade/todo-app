@@ -4,7 +4,7 @@ import Use from "../svg/Use";
 import AppContext from "../../context/AppContext";
 import { classes } from "../../helpers/classes";
 
-const DRAG_START_DELAY = 200;
+const DRAG_START_DELAY = 100;
 
 function Item(props) {
     const [ dragDelayId, setDragDelayId ] = useState(0);
@@ -22,8 +22,14 @@ function Item(props) {
 
         document.body.style.cursor = dragDelayId ? "move" : "default";
         document.addEventListener("mouseup", handleMouseUp);
-
-        return () => document.removeEventListener("mouseup", handleMouseUp);
+        document.addEventListener("touchcancel", handleMouseUp);
+        document.addEventListener("touchend", handleMouseUp);
+        
+        return () => {
+            document.removeEventListener("mouseup", handleMouseUp)
+            document.removeEventListener("touchcancel", handleMouseUp);
+            document.removeEventListener("touchend", handleMouseUp);
+        };
     }, [ dragDelayId ]);
 
     const className = classes({
@@ -35,6 +41,7 @@ function Item(props) {
     return (
         <div data-id={ props.identifier }
             className={ className }
+            onTouchStart={ handleMouseDown }
             onMouseDown={ handleMouseDown }>
             <div className="todo-item__checkbox">
                 <Checkbox checked={ props.done } onChange={ handleChange } />

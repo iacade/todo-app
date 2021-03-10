@@ -60,3 +60,11 @@
         cursor: move;
     }
 }
+
+@media (max-width: 760px) {
+    .todo-item .btn-close {
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+    }
+}

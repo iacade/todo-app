@@ -26,3 +26,9 @@ h1 {
 .mr-4 {
     margin-right: 20px;
 }
+
+@media (max-width: 760px) {
+    h1 {
+        font-size: 36px;
+    }
+}

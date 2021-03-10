@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 80px;
+    padding: 80px 30px 0 30px;
 
     font-family: "Josefin Sans", sans-serif;
     font-size: 18px;
@@ -32,5 +32,25 @@
     &--light {
         background: hsl(0, 0%, 98%) top center
             / 100% auto no-repeat url("../../images/bg-desktop-light.jpg");
+    }
+}
+
+@media (max-width: 760px) {
+    .app {
+        font-size: 14px;
+
+        &__tooltip {
+            font-size: 12px;
+        }
+
+        &--dark {
+            background: hsl(235, 21%, 11%) top center
+                / 100% auto no-repeat url("../../images/bg-mobile-dark.jpg");
+        }
+
+        &--light {
+            background: hsl(0, 0%, 98%) top center
+                / 100% auto no-repeat url("../../images/bg-mobile-light.jpg");
+        }
     }
 }

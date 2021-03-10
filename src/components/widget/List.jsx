@@ -71,58 +71,81 @@ function List(props) {
             })
         };
         const handleStopDrag = () => setDragItem(null);
+        const handleMove = (clientY) => {
+            const items = listRef.current
+                .querySelectorAll(".todo-item:not(.todo-item--stub)");
+
+            for (const item of items) {
+                const { top, bottom } = item.getBoundingClientRect();
+
+                if (clientY >= top && clientY <= bottom) {
+                    insertStubBefore(item.dataset.id);
+                    break;
+                }
+            }
+        };
         const handleMouseMove = (event) => {
             if (dragItem) {
                 event.preventDefault();
-
-                const { clientY } = event;
-                const items = listRef.current
-                    .querySelectorAll(".todo-item:not(.todo-item--stub)");
-
-                for (const item of items) {
-                    const { top, bottom } = item.getBoundingClientRect();
-
-                    if (clientY >= top && clientY <= bottom) {
-                        insertStubBefore(item.dataset.id);
-                        break;
-                    }
-                }
+                handleMove(event.clientY);
+            }
+        };
+        const handleTouchMove = (event) => {
+            if (dragItem) {
+                handleMove(event.touches[0].clientY);
             }
         };
 
         document.body.style.userSelect = dragItem ? "none" : "auto";
         document.addEventListener("mouseup", handleStopDrag);
         document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("touchmove", handleTouchMove);
+        document.addEventListener("touchend", handleStopDrag);
+        document.addEventListener("touchcancel", handleStopDrag);
         
         return () => {
             document.removeEventListener("mouseup", handleStopDrag);
             document.removeEventListener("mousemove", handleMouseMove);
+            document.removeEventListener("touchmove", handleTouchMove);
+            document.removeEventListener("touchend", handleStopDrag);
+            document.removeEventListener("touchcancel", handleStopDrag);
         };
     }, [ dragItem, state.items, dispatch ]);
 
     return (
-        <div className="list">
-            <ol ref={ listRef }>
-                { filteredItems.map(item => (
-                    <Item isStub={ dragItem === item.identifier }
-                        onStartDrag={ handleStartDrag }
-                        key={ item.identifier } { ...item } />
-                )) }
-            </ol>
-            <div className="list__footer flex align-between valign-center">
-                <span>{ leftItemsText }</span>
-                <div className="flex">
-                    { Object.values(filters).map(({ text, name }) => (
-                        <InlineButton key={ name }
-                            className="mr-4"
-                            active={ filter === name }
-                            text={ text }
-                            onClick={ () => setFilter(name) } />
+        <>
+            <div className="list">
+                <ol ref={ listRef }>
+                    { filteredItems.map(item => (
+                        <Item isStub={ dragItem === item.identifier }
+                            onStartDrag={ handleStartDrag }
+                            key={ item.identifier } { ...item } />
                     )) }
+                </ol>
+                <div className="list__footer flex align-between valign-center">
+                    <span>{ leftItemsText }</span>
+                    <div className="flex hide-mobile">
+                        { Object.values(filters).map(({ text, name }, idx, arr) => (
+                            <InlineButton key={ name }
+                                className={ idx !== arr.length - 1 ? "mr-4" : "" }
+                                active={ filter === name }
+                                text={ text }
+                                onClick={ () => setFilter(name) } />
+                        )) }
+                    </div>
+                    <InlineButton text="Clear Completed" onClick={ removeCompleted } />
                 </div>
-                <InlineButton text="Clear Completed" onClick={ removeCompleted } />
             </div>
-        </div>
+            <div className="flex-mobile align-center list-mobile-footer">
+                { Object.values(filters).map(({ text, name }, idx, arr) => (
+                    <InlineButton key={ name }
+                        className={ idx !== arr.length - 1 ? "mr-4" : "" }
+                        active={ filter === name }
+                        text={ text }
+                        onClick={ () => setFilter(name) } />
+                )) }
+            </div>
+        </>
     );
 }
 

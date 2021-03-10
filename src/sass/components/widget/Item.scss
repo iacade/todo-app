@@ -55,7 +55,7 @@
 
     &--stub.todo-item {
         border: 1px dashed var(--icon-hover-color);
-        transform: translate(-10px, -10px);
+        transform: scale(.9);
         box-shadow: 10px 10px 25px 10px var(--block-shadow-color);
         cursor: move;
     }

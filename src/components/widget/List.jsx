@@ -92,6 +92,7 @@ function List(props) {
         };
         const handleTouchMove = (event) => {
             if (dragItem) {
+                event.preventDefault();
                 handleMove(event.touches[0].clientY);
             }
         };
@@ -99,7 +100,7 @@ function List(props) {
         document.body.style.userSelect = dragItem ? "none" : "auto";
         document.addEventListener("mouseup", handleStopDrag);
         document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("touchmove", handleTouchMove);
+        document.addEventListener("touchmove", handleTouchMove, { passive: false });
         document.addEventListener("touchend", handleStopDrag);
         document.addEventListener("touchcancel", handleStopDrag);
         

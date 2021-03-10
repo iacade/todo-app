@@ -8,8 +8,8 @@ function Field() {
     const [ checked, setChecked ] = useState(false);
     const { dispatch } = useContext(AppContext);
     
-    const handleKeyPress = ({ code }) => {
-        if (code === "Enter" && text) {
+    const handleKeyDown = ({ code, keyCode }) => {
+        if ((code === "Enter" || keyCode === 13) && text) {
             dispatch({
                 type: "push",
                 text: text,
@@ -29,7 +29,7 @@ function Field() {
                 <Input placeholder="Create a new todo..."
                     value={ text }
                     onChange={ ({ target: { value } }) => setText(value) }
-                    onKeyPress={ handleKeyPress } />
+                    onKeyDown={ handleKeyDown } />
             </div>
         </div>
     );

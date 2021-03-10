@@ -34,7 +34,8 @@ function Input(props) {
                 onFocus={ () => setFocused(true) }
                 onBlur={ () => setFocused(false) }
                 onChange={ handleChange }
-                onKeyDown={ props.onKeyDown } />
+                onKeyDown={ props.onKeyDown }
+                onKeyPress={ props.onKeyPress } />
         </label>
     );
 }

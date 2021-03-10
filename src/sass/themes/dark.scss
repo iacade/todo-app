@@ -1,6 +1,7 @@
 .app {
     --block-color: hsl(235, 24%, 19%);
-    --block-shadow: 0 20px 35px rgba(15, 15, 35, .5);
+    --block-shadow-color: rgba(15, 15, 35, .5);
+    --block-shadow: 0 20px 35px var(--block-shadow-color);
     --accent-color: hsl(220, 98%, 61%);
     --placeholder-color: hsl(234, 11%, 52%);
     --dark-color: hsl(233, 14%, 35%);

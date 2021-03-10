@@ -2,7 +2,9 @@
     display: flex;
     align-items: center;
     background: var(--block-color);
+    border: 1px dashed transparent;
     cursor: pointer;
+    transition: 100ms transform;
 
     &__value {
         width: 100%;
@@ -49,5 +51,12 @@
         transform: none;
         opacity: 1;
         visibility: visible;
+    }
+
+    &--stub.todo-item {
+        border: 1px dashed var(--icon-hover-color);
+        transform: translate(-10px, -10px);
+        box-shadow: 10px 10px 25px 10px var(--block-shadow-color);
+        cursor: move;
     }
 }

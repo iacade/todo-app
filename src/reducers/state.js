@@ -4,19 +4,19 @@ import TodoItem from "../models/TodoItem";
 const idGenerator = id();
 const initial = {
     items: [
-        new TodoItem("Complete online JavaScript course", true, idGenerator.next().value),
-        new TodoItem("Jog around the park 3x", false, idGenerator.next().value),
-        new TodoItem("10 minutes meditaion", false, idGenerator.next().value),
-        new TodoItem("Read for 1 hour", false, idGenerator.next().value),
-        new TodoItem("Pick up groceries", false, idGenerator.next().value),
-        new TodoItem("Complete Todo App on Frontend Mentor", false, idGenerator.next().value),
+        new TodoItem("Complete online JavaScript course", true, idGenerator.next().value + ""),
+        new TodoItem("Jog around the park 3x", false, idGenerator.next().value + ""),
+        new TodoItem("10 minutes meditaion", false, idGenerator.next().value + ""),
+        new TodoItem("Read for 1 hour", false, idGenerator.next().value + ""),
+        new TodoItem("Pick up groceries", false, idGenerator.next().value + ""),
+        new TodoItem("Complete Todo App on Frontend Mentor", false, idGenerator.next().value + ""),
     ]
 };
 
 function reducer(state, action) {
     switch (action.type) {
         case "push":
-            state.items.unshift(new TodoItem(action.text, action.done, idGenerator.next().value));
+            state.items.unshift(new TodoItem(action.text, action.done, idGenerator.next().value + ""));
             break;
         case "pop":
             const index = state.items.findIndex(item => item.identifier === action.identifier);
@@ -31,6 +31,9 @@ function reducer(state, action) {
             break;
         case "remove":
             state.items = state.items.filter(action.filter);
+            break;
+        case "sort":
+            state.items = action.items;
             break;
         default:
             return state;

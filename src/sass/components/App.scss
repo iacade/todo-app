@@ -10,12 +10,19 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding-top: 80px;
 
     font-family: "Josefin Sans", sans-serif;
     font-size: 18px;
     color: var(--text-color);
+
+    &__tooltip {
+        font-size: 16px;
+        color: var(--dark-color);
+        margin-top: 50px;
+    }
 
     &--dark {
         background: hsl(235, 21%, 11%) top center

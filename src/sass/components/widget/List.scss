@@ -1,11 +1,14 @@
 .list {
     border-radius: 4px;
-    overflow: hidden;
     box-shadow: var(--block-shadow);
     background: var(--block-color);
 
     .todo-item {
         border-bottom: 1px solid var(--item-border-color);
+
+        &:first-child {
+            border-radius: 4px 4px 0 0;
+        }
     }
 
     &__footer {

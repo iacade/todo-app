@@ -25,6 +25,9 @@ function App() {
             <Source />
             <main className={ className }>
                 <Widget />
+                <div className="app__tooltip">
+                    Drag and drop to reorder list
+                </div>
             </main>
         </AppContext.Provider>
     );

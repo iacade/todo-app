@@ -58,14 +58,9 @@
 }
 
 .btn-close {
-    border: 1px dashed transparent;
     color: #494C6B;
 
     &:hover, &:focus {
         color: var(--icon-hover-color);
-    }
-
-    &:focus {
-        border-color: var(--icon-hover-color);
     }
 }

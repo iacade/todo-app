@@ -3,6 +3,11 @@
     box-shadow: var(--block-shadow);
     background: var(--block-color);
 
+    ol {
+        max-height: 30vh;
+        overflow-y: auto;
+    }
+
     .todo-item {
         border-bottom: 1px solid var(--item-border-color);
 

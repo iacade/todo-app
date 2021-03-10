@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import AppContext from "../../context/AppContext";
-import { swap } from "../../helpers/array";
 import InlineButton from "../form/InlineButton";
 import Item from "./Item";
+import AppContext from "../../context/AppContext";
+import { swap } from "../../helpers/array";
 
 const filters = {
     all: {
@@ -51,17 +51,13 @@ function List(props) {
     const listRef = useRef(null);
     const [ filter, setFilter ] = useState(props.filter || filters.all.name);
     const [ dragItem, setDragItem ] = useState(null);
-    const {
-        state,
-        dispatch
-    } = useContext(AppContext);
-    const removeCompleted = () => dispatch({
-        type: "remove",
-        filter: item => !item.done
-    });
-    const handleStartDrag = identifier => setDragItem(identifier);
+    const { state, dispatch } = useContext(AppContext);
+    
     const filteredItems = filters[filter].filter(state.items);
     const leftItemsText = formatMessage(filter, state.items);
+    
+    const removeCompleted = () => dispatch({ type: "remove", filter: item => !item.done });
+    const handleStartDrag = identifier => setDragItem(identifier);
     
     useEffect(() => {
         const insertStubBefore = (key) => {
@@ -82,7 +78,7 @@ function List(props) {
                 const { clientY } = event;
                 const items = listRef.current
                     .querySelectorAll(".todo-item:not(.todo-item--stub)");
-                
+
                 for (const item of items) {
                     const { top, bottom } = item.getBoundingClientRect();
 

@@ -1,22 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import AppContext from "../../context/AppContext";
-import { classes } from "../../helpers/classes";
 import Checkbox from "../form/Checkbox";
 import Use from "../svg/Use";
+import AppContext from "../../context/AppContext";
+import { classes } from "../../helpers/classes";
 
 const DRAG_START_DELAY = 200;
 
 function Item(props) {
     const [ dragDelayId, setDragDelayId ] = useState(0);
     const { dispatch } = useContext(AppContext);
-    const handleChange = () => dispatch({
-        type: "toggle",
-        identifier: props.identifier
-    });
-    const handleRemove = () => dispatch({
-        type: "pop",
-        identifier: props.identifier
-    });
+    const handleChange = () => dispatch({ type: "toggle", identifier: props.identifier });
+    const handleRemove = () => dispatch({ type: "pop", identifier: props.identifier });
     const handleMouseDown = () => {
         setDragDelayId(setTimeout(() => props.onStartDrag?.(props.identifier), DRAG_START_DELAY));
     };
